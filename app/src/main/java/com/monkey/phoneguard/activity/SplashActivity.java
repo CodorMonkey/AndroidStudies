@@ -7,13 +7,21 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.HttpHandler;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.monkey.phoneguard.R;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
@@ -33,7 +41,8 @@ public class SplashActivity extends Activity {
     private static final int CODE_JSON_ERROR = 3;
     private static final int CODE_ENTER_HOME = 4;
 
-    TextView tv_version;
+    TextView tvVersion;
+    TextView tvProgress;
     private String mDes;
     private int mVersionCode;
     private String mVersionName;
@@ -83,13 +92,15 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        tv_version = (TextView) findViewById(R.id.tv_version);
-        tv_version.setText("版本号：" + getVersionName());
+        tvVersion = (TextView) findViewById(R.id.tv_version);
+        tvVersion.setText("版本号：" + getVersionName());
+        tvProgress = (TextView) findViewById(R.id.tv_progress);
         checkVersion();
     }
 
     /**
      * 获取当前版本名称
+     *
      * @return 当前版本名称
      */
     private String getVersionName() {
@@ -106,6 +117,7 @@ public class SplashActivity extends Activity {
 
     /**
      * 获取当前版本号
+     *
      * @return 当前版本号
      */
     private int getVersionCode() {
@@ -204,7 +216,38 @@ public class SplashActivity extends Activity {
      * 更新app
      */
     private void doUpdate() {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            String target = Environment.getExternalStorageDirectory() + "/update.apk";
+            HttpUtils http = new HttpUtils();
+            System.out.println("url:" + mDownloadUrl);
+            System.out.println("target:" + target);
+            HttpHandler handler = http.download(mDownloadUrl, target,
+                    true,
+                    true,
+                    new RequestCallBack<File>() {
+                        @Override
+                        public void onStart() {
+                            tvProgress.setVisibility(View.VISIBLE);
+                        }
 
+                        @Override
+                        public void onLoading(long total, long current, boolean isUploading) {
+                            tvProgress.setText("下载进度：" + current * 100 / total + "%");
+                        }
+
+                        @Override
+                        public void onSuccess(ResponseInfo<File> responseInfo) {
+                            Toast.makeText(SplashActivity.this, "下载完成~~", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(HttpException e, String s) {
+                            Toast.makeText(SplashActivity.this, "下载失败！！", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(this, "你木有SD卡，无法安装", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
