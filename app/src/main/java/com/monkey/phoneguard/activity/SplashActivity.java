@@ -2,13 +2,10 @@ package com.monkey.phoneguard.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
@@ -53,7 +50,7 @@ public class SplashActivity extends Activity {
 
     /**
      * 获取版本名称
-     * @return
+     * @return 版本名称
      */
     private String getVersionName() {
         PackageManager packageManager = getPackageManager();
@@ -69,7 +66,7 @@ public class SplashActivity extends Activity {
 
     /**
      * 获取版本号
-     * @return
+     * @return 版本号
      */
     private int getVersionCode() {
         PackageManager packageManager = getPackageManager();
@@ -111,10 +108,13 @@ public class SplashActivity extends Activity {
                         }
                     }
                 } catch (MalformedURLException e) {
+                    msg.what = CODE_URL_ERROR;
                     e.printStackTrace();
                 } catch (IOException e) {
+                    msg.what = CODE_NET_ERROR;
                     e.printStackTrace();
                 } catch (JSONException e) {
+                    msg.what = CODE_JSON_ERROR;
                     e.printStackTrace();
                 } finally {
                     handler.sendMessage(msg);
