@@ -13,4 +13,8 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
+    private String getVersion() {
+        return null;
+    }
+
 }
