@@ -2,10 +2,12 @@ package com.monkey.phoneguard.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -96,6 +98,12 @@ public class SplashActivity extends Activity {
         tvVersion.setText("版本号：" + getVersionName());
         tvProgress = (TextView) findViewById(R.id.tv_progress);
         checkVersion();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        enterHome();
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
@@ -209,6 +217,13 @@ public class SplashActivity extends Activity {
                 enterHome();
             }
         });
+        //设置返回按钮监听
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                enterHome();
+            }
+        });
         builder.show();
     }
 
@@ -222,8 +237,6 @@ public class SplashActivity extends Activity {
             System.out.println("url:" + mDownloadUrl);
             System.out.println("target:" + target);
             HttpHandler handler = http.download(mDownloadUrl, target,
-                    true,
-                    true,
                     new RequestCallBack<File>() {
                         @Override
                         public void onStart() {
@@ -237,12 +250,16 @@ public class SplashActivity extends Activity {
 
                         @Override
                         public void onSuccess(ResponseInfo<File> responseInfo) {
-                            Toast.makeText(SplashActivity.this, "下载完成~~", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(SplashActivity.this, "下载完成~~", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setDataAndType(Uri.fromFile(responseInfo.result), "application/vnd.android.package-archive");
+                            startActivityForResult(intent, 0);
                         }
 
                         @Override
                         public void onFailure(HttpException e, String s) {
-                            Toast.makeText(SplashActivity.this, "下载失败！！", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SplashActivity.this, s, Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {
