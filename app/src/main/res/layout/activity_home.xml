@@ -5,12 +5,7 @@
 
     <TextView
         android:text="功能列表"
-        android:gravity="center"
-        android:textColor="@color/balck"
-        android:textSize="20sp"
-        android:background="#7ece2d"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        style="@style/ActivityTitle" />
 
     <com.monkey.phoneguard.view.MarqueeTextView
         android:text="小明牌手机卫士，你值得拥有~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
