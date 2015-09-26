@@ -9,6 +9,7 @@
         style="@style/ActivityTitle" />
 
     <com.monkey.phoneguard.view.SettingItemView
+        android:id="@+id/item_update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></com.monkey.phoneguard.view.SettingItemView>
 

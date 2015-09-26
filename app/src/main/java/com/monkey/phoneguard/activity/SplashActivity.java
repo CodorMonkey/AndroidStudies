@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -51,6 +52,7 @@ public class SplashActivity extends Activity {
     private String mDownloadUrl;
 
     private final Handler handler = new MyHandler(this);
+    private SharedPreferences sp;
 
     /**
      * 使用静态内部类创建handler，防止内存泄露
@@ -97,7 +99,15 @@ public class SplashActivity extends Activity {
         tvVersion = (TextView) findViewById(R.id.tv_version);
         tvVersion.setText("版本号：" + getVersionName());
         tvProgress = (TextView) findViewById(R.id.tv_progress);
-        checkVersion();
+
+        //判断是否设置了自动更新
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+        boolean autoUpdate = sp.getBoolean("auto_update", true);
+        if (autoUpdate) {
+            checkVersion();
+        } else {
+            handler.sendEmptyMessageDelayed(CODE_ENTER_HOME, 2000);
+        }
     }
 
     @Override
