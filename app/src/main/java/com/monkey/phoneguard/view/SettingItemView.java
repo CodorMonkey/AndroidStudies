@@ -11,7 +11,7 @@ import com.monkey.phoneguard.R;
 
 
 /**
- * Created by wateradu on 2015/9/26.
+ * Created by MonkeyKiky on 2015/9/26.
  */
 public class SettingItemView extends RelativeLayout {
 
