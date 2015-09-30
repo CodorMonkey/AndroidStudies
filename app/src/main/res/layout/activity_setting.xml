@@ -1,16 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:monkey="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
     <TextView
-        android:text="设置中心"
+        android:text="@string/setting_title"
         style="@style/ActivityTitle" />
 
     <com.monkey.phoneguard.view.SettingItemView
         android:id="@+id/item_update"
+        monkey:item_title="自动更新"
+        monkey:item_desc_off="当前状态为关闭"
+        monkey:item_desc_on="当前状态为开启"
+        monkey:item_ischecked="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></com.monkey.phoneguard.view.SettingItemView>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
