@@ -1,4 +1,4 @@
-package com.monkey.phoneguard.activity;
+package com.monkey.phoneguard.activity.main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.monkey.phoneguard.R;
+import com.monkey.phoneguard.activity.phoneguard.PhoneGuardActivity;
+import com.monkey.phoneguard.activity.setting.SettingActivity;
+import com.monkey.phoneguard.utils.MD5Utils;
 
 public class HomeActivity extends Activity {
 
@@ -144,9 +147,10 @@ public class HomeActivity extends Activity {
             public void onClick(View v) {
                 String password = sp.getString("password", null);
                 String passwordIn = etPassword.getText().toString();
-                if (!TextUtils.isEmpty(password) && password.equals(passwordIn)) {
-                    Toast.makeText(HomeActivity.this, "密码正确~~", Toast.LENGTH_SHORT).show();
+                if (!TextUtils.isEmpty(password) && password.equals(MD5Utils.encode(passwordIn))) {
+                    //Toast.makeText(HomeActivity.this, "密码正确~~", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
+                    startActivity(new Intent(HomeActivity.this, PhoneGuardActivity.class));
                 } else {
                     Toast.makeText(HomeActivity.this, "密码错误!!", Toast.LENGTH_SHORT).show();
                 }
@@ -182,9 +186,10 @@ public class HomeActivity extends Activity {
                 } else if (!password.equals(passwordConfirm)) {
                     Toast.makeText(HomeActivity.this, "两次密码不一致!!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(HomeActivity.this, "设置密码成功~~", Toast.LENGTH_SHORT).show();
-                    sp.edit().putString("password", password).commit();
+                    //Toast.makeText(HomeActivity.this, "设置密码成功~~", Toast.LENGTH_SHORT).show();
+                    sp.edit().putString("password", MD5Utils.encode(password)).commit();
                     dialog.dismiss();
+                    startActivity(new Intent(HomeActivity.this, PhoneGuardActivity.class));
                 }
             }
         });

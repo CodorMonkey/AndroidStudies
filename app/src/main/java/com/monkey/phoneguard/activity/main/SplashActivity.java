@@ -1,8 +1,7 @@
-package com.monkey.phoneguard.activity;
+package com.monkey.phoneguard.activity.main;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -61,7 +60,7 @@ public class SplashActivity extends Activity {
         private final WeakReference<SplashActivity> mActivity;
 
         public MyHandler(SplashActivity activity) {
-            mActivity = new WeakReference<SplashActivity>(activity);
+            mActivity = new WeakReference<>(activity);
         }
 
         @Override

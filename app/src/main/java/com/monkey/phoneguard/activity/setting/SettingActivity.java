@@ -1,4 +1,4 @@
-package com.monkey.phoneguard.activity;
+package com.monkey.phoneguard.activity.setting;
 
 import android.app.Activity;
 import android.content.SharedPreferences;

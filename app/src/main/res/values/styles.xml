@@ -13,4 +13,39 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
     </style>
+
+    <style name="SetupContent">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:textColor">@color/balck</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SetupContent.leftStar">
+        <item name="android:drawableLeft">@android:drawable/star_big_on</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="GreenBtn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/btn_green_selector</item>
+    </style>
+
+    <style name="GreenBtn.Next">
+        <item name="android:drawableRight">@mipmap/next</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:text">下一步</item>
+    </style>
+
+    <style name="GreenBtn.Previous">
+        <item name="android:drawableLeft">@mipmap/previous</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:text">上一步</item>
+    </style>
+
 </resources>

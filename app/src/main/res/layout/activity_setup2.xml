@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:monkey="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/ActivityTitle"
+        android:text="@string/setup2" />
+
+    <TextView
+        style="@style/SetupContent"
+        android:text="通过绑定SIM卡：" />
+
+    <TextView
+        style="@style/SetupContent"
+        android:text="下次重启手机如果发现SIM卡变化" />
+
+    <TextView
+        style="@style/SetupContent"
+        android:text="就会发送报警短信" />
+
+    <com.monkey.phoneguard.view.SettingItemView
+        monkey:item_desc_off="SIM卡没有绑定"
+        monkey:item_desc_on="SIM卡已经绑定"
+        monkey:item_title="点击绑定SIM卡"
+        monkey:item_ischecked="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/setup2" />
+
+        <Button
+            style="@style/GreenBtn.Next"
+            android:onClick="next" />
+
+        <Button
+            style="@style/GreenBtn.Previous"
+            android:onClick="previous" />
+    </RelativeLayout>
+
+</LinearLayout>
