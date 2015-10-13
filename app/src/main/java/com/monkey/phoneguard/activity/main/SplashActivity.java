@@ -30,6 +30,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.monkey.phoneguard.constant.SharedPreferencesKeys;
 import com.monkey.phoneguard.utils.StreamUtils;
 
 import org.json.JSONException;
@@ -101,7 +102,7 @@ public class SplashActivity extends Activity {
 
         //判断是否设置了自动更新
         sp = getSharedPreferences("config", MODE_PRIVATE);
-        boolean autoUpdate = sp.getBoolean("auto_update", true);
+        boolean autoUpdate = sp.getBoolean(SharedPreferencesKeys.AUTO_UPDATE, true);
         if (autoUpdate) {
             checkVersion();
         } else {

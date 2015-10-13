@@ -7,12 +7,13 @@
 
     <TextView
         style="@style/ActivityTitle"
-        android:text="4.恭喜您，设置完成" />
+        android:text="4.设置防盗保护" />
 
     <com.monkey.phoneguard.view.SettingItemView
+        android:id="@+id/siv_safe"
         monkey:item_title="防盗保护"
-        monkey:item_desc_on="防盗保护未开启"
-        monkey:item_desc_off="防盗保护已开启"
+        monkey:item_desc_on="防盗保护已开启"
+        monkey:item_desc_off="防盗保护未开启"
         monkey:item_ischecked="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -57,7 +58,7 @@
 
         <Button
             style="@style/GreenBtn.Next"
-            android:onClick="complete"
+            android:onClick="next"
             android:text="设置完成" />
 
         <Button

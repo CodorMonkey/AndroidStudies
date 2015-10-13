@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.monkey.phoneguard.R;
 import com.monkey.phoneguard.activity.phoneguard.PhoneGuardActivity;
 import com.monkey.phoneguard.activity.setting.SettingActivity;
+import com.monkey.phoneguard.constant.SharedPreferencesKeys;
 import com.monkey.phoneguard.utils.MD5Utils;
 
 public class HomeActivity extends Activity {
@@ -117,7 +118,7 @@ public class HomeActivity extends Activity {
     private void showPasswordDialog() {
         //判断是否已经设置了密码
         sp = getSharedPreferences("config", MODE_PRIVATE);
-        String password = sp.getString("password", null);
+        String password = sp.getString(SharedPreferencesKeys.PASSWORD, null);
         if (TextUtils.isEmpty(password)) {
             //弹出设置密码对话框
             showPasswordSetDialog();
@@ -145,7 +146,7 @@ public class HomeActivity extends Activity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password = sp.getString("password", null);
+                String password = sp.getString(SharedPreferencesKeys.PASSWORD, null);
                 String passwordIn = etPassword.getText().toString();
                 if (!TextUtils.isEmpty(password) && password.equals(MD5Utils.encode(passwordIn))) {
                     //Toast.makeText(HomeActivity.this, "密码正确~~", Toast.LENGTH_SHORT).show();
@@ -187,7 +188,7 @@ public class HomeActivity extends Activity {
                     Toast.makeText(HomeActivity.this, "两次密码不一致!!", Toast.LENGTH_SHORT).show();
                 } else {
                     //Toast.makeText(HomeActivity.this, "设置密码成功~~", Toast.LENGTH_SHORT).show();
-                    sp.edit().putString("password", MD5Utils.encode(password)).commit();
+                    sp.edit().putString(SharedPreferencesKeys.PASSWORD, MD5Utils.encode(password)).commit();
                     dialog.dismiss();
                     startActivity(new Intent(HomeActivity.this, PhoneGuardActivity.class));
                 }

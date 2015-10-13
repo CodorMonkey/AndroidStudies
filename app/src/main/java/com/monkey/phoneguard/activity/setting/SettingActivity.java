@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.monkey.phoneguard.R;
+import com.monkey.phoneguard.constant.SharedPreferencesKeys;
 import com.monkey.phoneguard.view.SettingItemView;
 
 public class SettingActivity extends Activity {
@@ -24,7 +25,7 @@ public class SettingActivity extends Activity {
             public void onClick(View v) {
                 boolean isChecked = itemUpdate.isChecked();
                 itemUpdate.setChecked(!isChecked);
-                sp.edit().putBoolean("auto_update", !isChecked).commit();
+                sp.edit().putBoolean(SharedPreferencesKeys.AUTO_UPDATE, !isChecked).commit();
             }
         });
     }

@@ -24,6 +24,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv_safe_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -53,6 +54,7 @@
             android:textSize="18sp" />
 
         <ImageView
+            android:id="@+id/iv_guard_lock"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"

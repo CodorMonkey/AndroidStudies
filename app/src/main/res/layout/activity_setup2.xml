@@ -22,6 +22,7 @@
         android:text="就会发送报警短信" />
 
     <com.monkey.phoneguard.view.SettingItemView
+        android:id="@+id/siv_sim"
         monkey:item_desc_off="SIM卡没有绑定"
         monkey:item_desc_on="SIM卡已经绑定"
         monkey:item_title="点击绑定SIM卡"

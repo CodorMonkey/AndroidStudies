@@ -44,7 +44,7 @@ public class SettingItemView extends RelativeLayout {
         item_desc_off = attrs.getAttributeValue(NAMESPACE, "item_desc_off");
         item_ischecked = attrs.getAttributeBooleanValue(NAMESPACE, "item_ischecked", true);
 
-        View view = View.inflate(getContext(), R.layout.setting_item, this);
+        View view = View.inflate(getContext(), R.layout.item_setting, this);
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvDesc = (TextView) findViewById(R.id.tv_desc);
         cbSwitch = (CheckBox) findViewById(R.id.cb_switch);
